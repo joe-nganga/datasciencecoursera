@@ -1,4 +1,6 @@
+#correlation fuction
 corr <- function(directory, threshold = 0) {
+#creating a usable path  
   path <- paste0(getwd(),"/", directory)
   corr_vect <- NULL
   for (i in 1:332) {
@@ -17,12 +19,12 @@ corr <- function(directory, threshold = 0) {
                       as.is = T, 
                       header = T)
     }
-    
+#checking the threshold and calculating the correlation    
     data <- dat[complete.cases(dat),]
     if (nrow(data) > threshold) {
       corr_vect <- c(corr_vect, cor(data[,"sulfate"], data[, "nitrate"]))
     }
   }
-  
+ #returning the result 
   return(corr_vect)
 }
